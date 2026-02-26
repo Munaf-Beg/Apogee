@@ -20,8 +20,39 @@ type SortOption = 'none' | 'day-asc' | 'regs-desc';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>('none');
+  const [selectedEventIds, setSelectedEventIds] = useState<number[]>([]);
+
+  const toggleCategory = (category: string) => {
+  if (category === 'All') {
+    setSelectedCategory([]); 
+    return;
+  }
+
+  setSelectedCategory((prev) =>
+    prev.includes(category)
+      ? prev.filter((c) => c !== category) 
+      : [...prev, category]                
+  );
+};
+
+  const toggleEventSelection = (id: number) => {
+  setSelectedEventIds((prev) => {
+    if (prev.includes(id)) {
+      return prev.filter((eventId) => eventId !== id);
+    } else {
+      return [...prev, id];
+    }
+  });
+};
+
+  const resetFilters = () => {
+    setSearchQuery('');
+    setSelectedCategory([]);
+    setSortBy('none');
+  
+  };
 
   const totalEvents = events.length;
 
@@ -37,12 +68,12 @@ export default function App() {
           categoryStats[a] > categoryStats[b] ? a : b
         )
       : 'N/A';
-
+  
   const processedEvents = [...events]
     .filter((event) => {
       const matchesCategory =
-        selectedCategory === 'All' ||
-        event.category === selectedCategory;
+        selectedCategory.length === 0 ||
+        selectedCategory.includes(event.category);
       const matchesSearch = event.name
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
@@ -92,9 +123,11 @@ export default function App() {
           placeholder="Search for an event..."
           placeholderTextColor="#6B7280"
           value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
+          onChangeText={setSearchQuery}></TextInput>
 
+        <TouchableOpacity style={styles.resetBtn} onPress={resetFilters}>
+          <Text style={styles.resetBtnText}>Clear All Filters</Text>
+        </TouchableOpacity>
         
         <View style={styles.filterWrapper}>
           <ScrollView    //for scrolling categories
@@ -107,18 +140,20 @@ export default function App() {
                 key={category}
                 style={[
                   styles.filterChip,
-                  selectedCategory === category &&
+                  (category === 'All' 
+                    ? selectedCategory.length === 0 
+                    : selectedCategory.includes(category)) &&
                     styles.filterChipActive,
                 ]}
-                onPress={() =>
-                  setSelectedCategory(category)
-                }
+                onPress={() => toggleCategory(category)}
                 activeOpacity={0.8}
               >
                 <Text
                   style={[
                     styles.filterText,
-                    selectedCategory === category &&
+                    (category === 'All' 
+                      ? selectedCategory.length === 0 
+                      : selectedCategory.includes(category)) &&
                       styles.filterTextActive,
                   ]}
                 >
@@ -201,6 +236,8 @@ export default function App() {
             <EventCard
               key={event.id}
               event={event}
+              isSelected={selectedEventIds.includes(event.id)} 
+              onToggle={() => toggleEventSelection(event.id)} 
             />
           ))}
 
@@ -377,4 +414,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
   },
+
+resetBtn: {
+  alignSelf: 'flex-end',
+  marginBottom: 10,
+  paddingVertical: 6,
+  paddingHorizontal: 12,
+  borderRadius: 8,
+  backgroundColor: 'rgba(255, 59, 48, 0.1)',
+  borderWidth: 1,
+  borderColor: 'rgba(255, 59, 48, 0.3)',
+},
+resetBtnText: {
+  color: '#FF3B30',
+  fontSize: 12,
+  fontWeight: '700',
+},
 });

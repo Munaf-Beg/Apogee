@@ -5,18 +5,14 @@ import { FestEvent } from '../data/schedule';
 
 interface EventCardProps {
   event: FestEvent;
+  isSelected: boolean; 
+  onToggle: () => void; 
 }
 
-export const EventCard = ({ event }: EventCardProps) => {
-  
-  const [isSaved, setIsSaved] = useState<boolean>(false);
 
-  const toggleSave = () => {
-    setIsSaved(prevState => !prevState);
-  };
-
+export const EventCard = ({ event, isSelected, onToggle }: EventCardProps) => {
   return (
-    <View style={styles.cardContainer}>
+    <View style={[styles.cardContainer, isSelected && styles.cardSelected]}>
       <View style={styles.header}>
         <Text style={styles.eventName}>{event.name}</Text>
         <Text style={styles.categoryBadge}>{event.category}</Text>
@@ -28,12 +24,12 @@ export const EventCard = ({ event }: EventCardProps) => {
 
       
       <TouchableOpacity 
-        style={[styles.saveButton, isSaved && styles.saveButtonActive]} 
-        onPress={toggleSave}
+        style={[styles.saveButton, isSelected && styles.saveButtonActive]} 
+        onPress={onToggle}
         activeOpacity={0.7}
       >
-        <Text style={[styles.saveButtonText, isSaved && styles.saveButtonTextActive]}>
-          {isSaved ? "★ Saved" : "☆ Save Event"}
+        <Text style={[styles.saveButtonText, isSelected && styles.saveButtonTextActive]}>
+          {isSelected ? "★ Saved" : "☆ Save Event"}
         </Text>
       </TouchableOpacity>
     </View>
@@ -56,6 +52,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowRadius: 24,
     elevation: 8,
+  },
+
+  cardSelected: {
+    borderColor: '#30187d',
+    borderWidth: 2,
   },
 
   
