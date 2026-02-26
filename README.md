@@ -2,10 +2,6 @@
 
 A sleek, high-performance mobile dashboard built with **React Native (Expo)** and **TypeScript** to manage and explore events for the Apogee fest.
 
-## 📋 Task Details
-- **Option** Mobile Dashboard Development
-- **Stack** React Native (Expo) and Typescript.
-
 ## ✨ Features
 - **Live Search:** Instant filtering of events by name.
 - **Category Chips:** Quick-filter events by category (Music, Tech, Dance, Misc).
