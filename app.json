@@ -4,7 +4,7 @@
     "slug": "Apogee",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/image.png",
     "scheme": "apogee",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
