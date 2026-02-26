@@ -233,7 +233,6 @@ const styles = StyleSheet.create({
   letterSpacing: -1.2,
   marginTop: 35,
   marginBottom: 20,
-  // The Neon Glow Effect
   textShadowColor: 'rgba(77, 171, 247, 0.6)', 
   textShadowOffset: { width: 0, height: 0 },
   textShadowRadius: 15,
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
 
   statsCard: {
     flexDirection: 'row',
-    backgroundColor: '#001f61',
+    backgroundColor: '#30187d',
     paddingVertical: 26,
     paddingHorizontal: 24,
     borderRadius: 28,
@@ -264,7 +263,8 @@ const styles = StyleSheet.create({
 
   statDivider: {
     width: 2,
-    backgroundColor: 'rgba(0, 0, 0, 0.08)',
+    height: '100%',
+    backgroundColor: 'rgba(19, 13, 85, 0.55)',
     marginHorizontal: 18,
   },
 
@@ -311,9 +311,8 @@ const styles = StyleSheet.create({
   },
 
   filterChipActive: {
-    backgroundColor: '#6366F1',
-
-    shadowColor: '#6366F1',
+    backgroundColor: '#30187d',
+    shadowColor: '#30187d',
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.5,
     shadowRadius: 20,
@@ -354,7 +353,7 @@ const styles = StyleSheet.create({
   },
 
   sortBtnActive: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#30187d',
   },
 
   sortBtnText: {

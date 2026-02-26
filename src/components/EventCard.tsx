@@ -105,9 +105,9 @@ const styles = StyleSheet.create({
   },
 
   saveButtonActive: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#30187d',
 
-    shadowColor: '#6366F1',
+    shadowColor: '#30187d',
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.5,
     shadowRadius: 20,
