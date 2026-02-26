@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -226,16 +227,17 @@ const styles = StyleSheet.create({
   },
 
   headerTitle: {
-    fontSize: 36,
-    fontWeight: '500',
-    fontStyle: "normal",
-    color: '#3a3793',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 35,
-    marginBottom: 24,
-    letterSpacing: -1.2,
-  },
+  fontSize: 34,
+  fontWeight: '900',
+  color: '#FFFFFF',
+  letterSpacing: -1.2,
+  marginTop: 35,
+  marginBottom: 20,
+  // The Neon Glow Effect
+  textShadowColor: 'rgba(77, 171, 247, 0.6)', 
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 15,
+},
 
   statsCard: {
     flexDirection: 'row',
