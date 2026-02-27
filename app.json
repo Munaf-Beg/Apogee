@@ -19,7 +19,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.munaf_beg.Apogee"
     },
     "web": {
       "output": "static",
@@ -43,6 +44,19 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "37e9cf7f-c88c-4fe2-ba8d-03b83e076533"
+      }
+    },
+    "build": {
+      "preview": {
+        "android": {
+          "buildType": "apk"
+        }
+      }
     }
   }
 }
